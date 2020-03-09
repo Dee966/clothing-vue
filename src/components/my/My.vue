@@ -60,12 +60,15 @@
          // let token = '966966.c8327425b0eef063b8f6d66c80a49a73';
           this.axios({
             method:'get',
-            url:'/serverName/user/user_info/',
+            url:'/user/user_info/',
             headers:{
               'Authorization':token
             }
           }).then(res =>{
-            if (res.data.code != 0){
+            if (res.data.code !== 0){
+              if (res.data.msg === '未登录或登录失效，请先进行登录'){
+                this.$router.push({name: 'loginLink'})
+              }
               alert(res.data.msg)
             } else {
               console.log(res.data)
@@ -80,7 +83,7 @@
           //let token = '966966.c8327425b0eef063b8f6d66c80a49a73';
           this.axios({
             method:'get',
-            url:'/serverName/user/user_balance/',
+            url:'/user/user_balance/',
             headers:{
               'Authorization':token
             }

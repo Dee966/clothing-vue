@@ -83,10 +83,10 @@
     },
     methods:{
       getDetail:function (id) {
-        this.axios.get('/serverName/goods/goods_show/'+id).then(res1 =>{
+        this.axios.get('/goods/goods_show/'+id).then(res1 =>{
           this.info = res1.data.data
           console.log(res1.data.data)
-          this.axios.get('/serverName/orders/goods_appraise/'+id).then(res2 =>{
+          this.axios.get('/orders/goods_appraise/'+id).then(res2 =>{
             if (res2.data.code != 0){
               alert(res2.data.msg)
             } else {
@@ -103,7 +103,7 @@
         })
       },
       getSize:function(id){
-        this.axios.get('/serverName/goods/goods_size/'+id).then(res =>{
+        this.axios.get('/goods/goods_size/'+id).then(res =>{
           this.sizes = res.data.data
           console.log(this.sizes)
         }).catch(err =>{
@@ -117,6 +117,11 @@
         console.log(chVal)
       },
       buyGoods:function(){
+        let token = localStorage.getItem('token')
+        if(token === ''){
+          alert("未登录或登录失效，请先进行登录");
+          this.$router.push({name: 'loginLink'})
+        }
         let total = this.info.price * this.num;
         let order = {
           goodsId: this.$route.params.id,
@@ -153,13 +158,16 @@
           console.log(cart)
           this.axios({
             method:"post",
-            url:"/serverName/cart/cart_insert",cart,
+            url:"/cart/cart_insert",cart,
             headers:{
               'Authorization':token
             },
             data:cart
           }).then(res =>{
             if (res.data.code != 0){
+              if (res.data.msg === '未登录或登录失效，请先进行登录'){
+                this.$router.push({name: 'loginLink'})
+              }
               alert(res.data.msg)
             } else {
               alert("已加入购物车")

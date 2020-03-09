@@ -35,7 +35,7 @@
           let config = {
             headers:{'Content-Type':'multipart/form-data'}
           };
-          this.axios.post('/serverName/home/rotation_upload',formData,config).then(res =>{
+          this.axios.post('/home/rotation_upload',formData,config).then(res =>{
             if (res.data.code !== 0){
               alert("上传失败")
             }else {
@@ -46,11 +46,12 @@
                 managerId : localStorage.getItem('userId')
               }
               console.log(this.rotation)
-              this.axios.post('/serverName/home/rotation_insert',this.rotation).then(res =>{
+              this.axios.post('/home/rotation_insert',this.rotation).then(res =>{
                 if (res.data.code !== 0){
                   alert("上传失败！")
                 } else {
                   alert("上传成功！")
+                  this.$router.go(0);
                 }
               }).catch(err => {
                 alert("上传失败！")
@@ -61,7 +62,7 @@
           })
         },
         getBanners:function () {
-          this.axios.get('/serverName/home/rotation_chart').then(res => {
+          this.axios.get('/home/rotation_chart').then(res => {
             if (res.data.code !== 0){
               alert("目前还没有轮播图")
             }else {
@@ -72,16 +73,19 @@
           })
         },
         openDeleteBanner:function(bannerId){
-          this.$alert('确定要删除该轮播图吗？', '提示', {
-            confirmButtonText: '删除',
-            callback: action => {
-              this.deleteBanner(bannerId)
-            }
+          this.$confirm('确定要删除该商品吗？', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.deleteBanner(bannerId)
+          }).catch(() => {
+            console.log("取消")
           });
         },
         deleteBanner:function(bannerId){
           console.log(bannerId)
-          this.axios.delete('/serverName/home/rotation_delete/'+bannerId).then(res =>{
+          this.axios.delete('/home/rotation_delete/'+bannerId).then(res =>{
             if (res.data.code !== 0){
               alert("删除失败")
             } else {

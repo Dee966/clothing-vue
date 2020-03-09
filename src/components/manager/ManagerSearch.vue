@@ -35,7 +35,7 @@
         });
       },
       deleteGoods:function (id) {
-        this.axios.delete('/serverName/goods/goods_delete/'+id).then(res =>{
+        this.axios.delete('/goods/goods_delete/'+id).then(res =>{
           if (res.data.code !== 0){
             alert("删除失败")
           } else {
@@ -50,6 +50,7 @@
     mounted:function(){
       this.goods = JSON.parse((localStorage.getItem('result')));
       console.log(this.goods)
+      console.log(this.$route.path)
     }
   }
 </script>

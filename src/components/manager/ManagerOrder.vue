@@ -27,7 +27,7 @@
     },
     methods: {
       getAllOrder: function () {
-        this.axios.get('/serverName/orders/orders_show_all').then(res =>{
+        this.axios.get('/orders/orders_show_all').then(res =>{
           if (res.data.code !== 0){
             alert(res.data.msg)
           } else {
@@ -65,7 +65,7 @@
       },
       changeState:function (orderId) {
         let managerId = localStorage.getItem('userId')
-        this.axios.put('/serverName/orders/orders_log',{managerId:managerId,orderId:orderId}).then(res =>{
+        this.axios.put('/orders/orders_log',{managerId:managerId,orderId:orderId}).then(res =>{
           if (res.data.code !== 0){
             alert(res.data.ms)
           } else {

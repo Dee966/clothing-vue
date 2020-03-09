@@ -41,7 +41,7 @@
               </div>
               <div class="col-md-3">
 <!--                <el-checkbox label=""></el-checkbox>-->
-                <input type="checkbox" class="move-top" :id="cart.name">
+                <input type="checkbox" class="move-top" :id="cart.cartId">
                 <div class="move-top" style="cursor:pointer;float: right" @click="openDelete(cart.cartId)">删除</div>
               </div>
             </div>
@@ -74,12 +74,15 @@
         //let token = '966966.c8327425b0eef063b8f6d66c80a49a73';
         this.axios({
           method: 'get',
-          url: '/serverName/cart/cart_show/',
+          url: '/cart/cart_show/',
           headers: {
             'Authorization': token
           }
         }).then(res => {
           if (res.data.code !== 0){
+            if (res.data.msg === '未登录或登录失效，请先进行登录'){
+              this.$router.push({name: 'loginLink'})
+            }
             this.cartNull = res.data
             alert(res.data.msg)
           } else {
@@ -93,12 +96,19 @@
       settlement:function () {
         let userId = localStorage.getItem('userId');
         for (let i=0;i < this.carts.length;i++){
-          if ($("#"+this.carts[i].name).prop("checked") == true){
+          if (document.getElementById(this.carts[i].cartId).checked === true){
             this.carts[i].userId = userId
+            delete this.carts[i].goods
             this.checkList.push(this.carts[i])
           }
         }
-        this.axios.post('/serverName/cart/cart_order/',this.checkList).then(res =>{
+        console.log(this.checkList)
+        if (this.checkList.length === 0){
+          alert('请选择购物车中要购买的商品')
+          return
+        }
+        console.log(this.checkList)
+        this.axios.post('/cart/cart_order/',this.checkList).then(res =>{
           if (res.data.code != 0){
 
           }else {
@@ -122,7 +132,7 @@
       },
       deleteCart:function (cartId) {
         console.log(cartId)
-        this.axios.delete('/serverName/cart/cart_delete/'+cartId).then(res =>{
+        this.axios.delete('/cart/cart_delete/'+cartId).then(res =>{
           if (res.data.code !== 0){
             alert(res.data.msg)
           }else {

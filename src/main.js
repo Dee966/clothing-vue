@@ -11,6 +11,7 @@ import 'swiper/dist/css/swiper.css'
 import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+
 import 'swiper/dist/css/swiper.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 

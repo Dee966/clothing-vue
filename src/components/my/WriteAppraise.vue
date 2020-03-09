@@ -22,7 +22,7 @@
         subAppraise:function () {
           let content = $("#content").val();
           let ordersListId = localStorage.getItem('ordersListId');
-          this.axios.put('/serverName/orders/orders_appraise/'+ordersListId,{appraise:content}).then(res =>{
+          this.axios.put('/orders/orders_appraise/'+ordersListId,{appraise:content}).then(res =>{
             if (res.data.code !== 0){
               alert("评价失败")
             } else {

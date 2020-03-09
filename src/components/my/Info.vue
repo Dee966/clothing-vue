@@ -104,7 +104,7 @@
           //let token = '966966.c8327425b0eef063b8f6d66c80a49a73';
           this.axios({
             method:'put',
-            url:'/serverName/user/update_info/',
+            url:'/user/update_info/',
             data:userVo,
             headers:{
               'Authorization':token

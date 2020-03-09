@@ -101,7 +101,7 @@
             address:$("#address").val()
           }
           console.log(userVo)
-          this.axios.put("/serverName/user/user_info/"+userId,userVo).then(res =>{
+          this.axios.put("/user/user_info/"+userId,userVo).then(res =>{
             if (res.data.code != 0){
               alert(res.data.msg)
             } else {

@@ -2,11 +2,13 @@
   <div id="manager-login">
     <div class="container">
       <div style="height: 200px;display: flex;align-items: center;justify-content: center">
-        <div>
-          <!--        <img src="resources/imgs/book1.0.png" class="img-responsive img-circle center-block" style="width: 80px;height: 80px">-->
-          <h2 class="form-signin-heading text-center">管理员登录</h2>
-        </div>
-      </div>
+        <div style="margin-top: 50px">
+      <!--        <img src="resources/imgs/book1.0.png" class="img-responsive img-circle center-block" style="width: 80px;height: 80px">-->
+
+      <h2 class="form-signin-heading text-center">服装商城后台管理系统</h2>
+      <img src="static/logo.jfif" style="width: 150px;height: 150px;margin-left: 80px" alt="">
+    </div>
+    </div>
       <div style="width: 100%;display: flex;justify-content: center">
         <form class="form-signin" id="login_form" style="width: 30%;">
           <label for="username" class="sr-only">用户名</label>
@@ -16,8 +18,9 @@
           <label for="password" class="sr-only">密码</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
           <div class="text-right">
-            <router-link to="/register">注册账号</router-link>
+            <router-link to="/maRegister">注册账号</router-link>
           </div>
+          <br>
           <el-button id="login" type="success" style="width:100%" @click="maLogin()">登录</el-button>
           <!--        <button id="login" class="btn btn-lg btn-success btn-block" type="button" @click="login()">登录</button>-->
         </form>
@@ -40,7 +43,7 @@
             username: $("#username").val(),
             password: $("#password").val()
           }
-          this.axios.post("/serverName/manager/manager_login", loginVo).then(res => {
+          this.axios.post("/manager/manager_login", loginVo).then(res => {
             if (res.data.code != 0){
               alert(res.data.msg)
             } else {

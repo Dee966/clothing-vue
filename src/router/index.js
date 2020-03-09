@@ -21,6 +21,7 @@ import Cart from "../components/cart/Cart";
 import Pay from "../components/order/Pay";
 
 import ManagerLogin from "../components/manager/ManagerLogin";
+import ManagerRegister from "../components/manager/ManagerRegister";
 import ManagerHome from "../components/manager/ManagerHome";
 import ManagerHeader from "../components/manager/ManagerHeader";
 import ManagerUpload from "../components/manager/ManagerUpload";
@@ -28,6 +29,8 @@ import ManagerOrder from "../components/manager/ManagerOrder";
 import ManagerBanner from "../components/manager/ManagerBanner";
 import ManagerSearch from "../components/manager/ManagerSearch";
 import WriteAppraise from "../components/my/WriteAppraise";
+import ManagerEditGoods from "../components/manager/ManagerEditGoods";
+import ManagerUser from "../components/manager/ManagerUser";
 
 Vue.use(Router)
 
@@ -61,12 +64,15 @@ export default new Router({
     {path: '/pay',name: 'payLink' ,component: Pay,meta:{keepAlive:true}},
 
     {path: '/maLogin',name: 'maLoginLink' ,component: ManagerLogin,meta:{keepAlive:false}},
+    {path: '/maRegister',name: 'maRegisterLink' ,component: ManagerRegister,meta:{keepAlive:false}},
     {path: '/maHeader',name: 'maHeaderLink' ,component: ManagerHeader,meta:{keepAlive:false},children:[
         {path: '/maHeader/maHome',name: 'maHomeLink' ,component: ManagerHome,meta:{keepAlive:false}},
         {path: '/maHeader/maUpload',name: 'maUploadLink' ,component: ManagerUpload,meta:{keepAlive:false}},
         {path: '/maHeader/maOrder',name: 'maOrderLink' ,component: ManagerOrder,meta:{keepAlive:false}},
         {path: '/maHeader/maBanner',name: 'maBannerLink' ,component: ManagerBanner,meta:{keepAlive:false}},
         {path: '/maHeader/maSearch',name: 'maSearchLink' ,component: ManagerSearch,meta:{keepAlive:false}},
+        {path: '/maHeader/maEditGoods/:id',name: 'maEditGoodsLink' ,component: ManagerEditGoods,meta:{keepAlive:false}},
+        {path: '/maHeader/maUser',name: 'maUserLink' ,component: ManagerUser,meta:{keepAlive:false}},
         ]
     },
 

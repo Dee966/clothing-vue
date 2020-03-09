@@ -47,7 +47,7 @@
             password:$("#password").val()
           }
           console.log(loginVo)
-          this.axios.post("/serverName/login/user_register",loginVo).then(res =>{
+          this.axios.post("/login/user_register",loginVo).then(res =>{
             if (res.data.code != 0){
               alert(res.data.msg)
             } else {

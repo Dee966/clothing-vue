@@ -30,7 +30,7 @@
       },
       methods:{
         pay:function () {
-          this.axios.put("/serverName/orders/order_pay/"+this.order.orderId).then(res =>{
+          this.axios.put("/orders/order_pay/"+this.order.orderId).then(res =>{
             if (res.data.code != 0){
               alert("支付失败！")
             } else {

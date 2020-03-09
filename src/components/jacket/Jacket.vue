@@ -4,7 +4,7 @@
     <div v-for="(jacket,i) in jackets" :key="i">
       <router-link :to="'/detail/'+jacket.goodsId">
         <div id="goods">
-          <img :src="jacket.imge">
+          <img :src="jacket.imge" style="height: 330px">
           <h5 style="color: #ff5000">￥{{jacket.price}}</h5>
           <p style="margin: auto"><span id="baoyou">包邮</span> {{jacket.name}}</p>
         </div>
@@ -37,7 +37,7 @@
       //     });
       // },
       getJacket:function (id) {
-        this.axios.get("/serverName/goods/type_show/"+id).then(res => {
+        this.axios.get("/goods/type_show/"+id).then(res => {
           if (res.data.code != 0){
             alert(res.data.msg)
           } else {

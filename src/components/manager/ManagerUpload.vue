@@ -52,7 +52,7 @@
             let config = {
               headers:{'Content-Type':'multipart/form-data'}
             };
-            this.axios.post('/serverName/goods/goods_upload',formData,config).then(res => {
+            this.axios.post('/goods/goods_upload',formData,config).then(res => {
               if (res.data.code !== 0){
                 alert("上传失败")
               }else {
@@ -96,7 +96,7 @@
                     },
                   ]
                 }
-                this.axios.post('/serverName/goods/goods_insert',this.goodsInfo).then(res =>{
+                this.axios.post('/goods/goods_insert',this.goodsInfo).then(res =>{
                   if (res.data.code !== 0){
                     alert("上传失败！")
                   } else {

@@ -29,7 +29,7 @@
     },
     methods:{
       getJacket:function (id) {
-        this.axios.get("/serverName/goods/type_show/"+id).then(res => {
+        this.axios.get("/goods/type_show/"+id).then(res => {
           if (res.data.code != 0){
             alert(res.data.msg)
           } else {

@@ -1,13 +1,16 @@
 <template>
   <div id="manager-home">
     <div class="container">
-      <p style="color: #dc3545">*点击可删除商品</p>
       <div v-for="(good,i) in goods" :key="i">
-          <div id="goods" @click="open(good.goodsId)">
-            <img :src="good.imge">
+          <div id="goods">
+            <img :src="good.imge" style="height: 330px">
             <h5 style="color: #ff5000">￥{{good.price}}</h5>
             <p style="margin: auto">&nbsp<span id="baoyou">包邮</span> {{good.name}}</p><br>
-            <div>商品ID：{{good.goodsId}}</div>
+            <span>商品ID：{{good.goodsId}}</span>&nbsp;&nbsp;
+            <span>库存：{{good.stock}}</span>
+            <br><br>
+            <el-button type="primary" icon="el-icon-edit" circle @click="moveEdit(good.goodsId)"></el-button>
+            <el-button type="danger" icon="el-icon-delete" circle @click="open(good.goodsId)"></el-button>
           </div>
       </div>
     </div>
@@ -28,14 +31,14 @@
     },
     methods:{
       getGoods:function(){
-        this.axios.get("/serverName/goods/goods_show_all").then(res => {
+        this.axios.get("/goods/goods_show_all").then(res => {
           if (res.data.code != 0){
             alert(res.data.msg)
           } else {
             this.goods = res.data.data
             console.log(this.goods)
-          }
 
+          }
         }).catch(err => {
           console.log("请求失败")
         })
@@ -52,7 +55,7 @@
         });
       },
       deleteGoods:function (id) {
-        this.axios.delete('/serverName/goods/goods_delete/'+id).then(res =>{
+        this.axios.delete('/goods/goods_delete/'+id).then(res =>{
           if (res.data.code !== 0){
             alert("删除失败")
           } else {
@@ -62,6 +65,10 @@
         }).catch(err =>{
           alert("系统错误！")
         })
+      },
+      moveEdit(goodId){
+        localStorage.setItem('goodId',goodId)
+        this.$router.push({path:'/maHeader/maEditGoods/'+goodId})
       }
     },
     mounted:function(){ //生命周期
@@ -73,7 +80,7 @@
 <style scoped>
   #goods{
     width: 250px;
-    height: 440px;
+    height: 500px;
     float: left;
     margin-right: 20px;
     margin-top: 10px;
@@ -88,8 +95,5 @@
     border-radius: 10px;
     background-color: #ff5000;
     color: white
-  }
-  #goods:hover{
-    border: solid #ff5000 3px;
   }
 </style>

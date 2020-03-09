@@ -29,13 +29,14 @@
       <div v-for="(good,i) in goods" :key="i">
           <router-link :to="'/detail/'+good.goodsId">
             <div id="goods">
-              <img :src="good.imge">
+              <img :src="good.imge" style="height: 330px">
               <h5 style="color: #ff5000">￥{{good.price}}</h5>
               <p style="margin: auto">&nbsp<span id="baoyou">包邮</span> {{good.name}}</p>
             </div>
           </router-link>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -85,7 +86,7 @@
       },
       methods:{
         getGoods:function(){
-          this.axios.get("/serverName/goods/goods_show_all").then(res => {
+          this.axios.get("/goods/goods_show_all").then(res => {
             if (res.data.code != 0){
               alert(res.data.msg)
             } else {
@@ -100,7 +101,7 @@
           })
         },
         getBanner:function () {
-          this.axios.get('/serverName/home/rotation_chart').then(res=>{
+          this.axios.get('/home/rotation_chart').then(res=>{
             if (res.data.code !== 0){
               $("#banner_img").style.dsplay="none";
             }else {

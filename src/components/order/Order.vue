@@ -76,7 +76,7 @@
         console.log(order)
         this.axios({
           method: 'post',
-          url:'/serverName/orders/orders_submit',
+          url:'/orders/orders_submit',
           headers: {'Authorization':token},
           data: order
         }).then(res => {
@@ -100,7 +100,7 @@
       //let token = '966966.c8327425b0eef063b8f6d66c80a49a73';
       this.axios({
         method:'get',
-        url:'/serverName/user/user_info/',
+        url:'/user/user_info/',
         headers:{
           'Authorization':token
         }

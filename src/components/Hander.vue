@@ -51,7 +51,7 @@
       search:function(){
         let keyWord = $('#key_word').val()
         console.log(keyWord)
-        this.axios.get("/serverName/home/search/"+keyWord).then(res => {
+        this.axios.get("/home/search/"+keyWord).then(res => {
           if (res.data.code != 0){
             alert(res.data.msg)
           } else {

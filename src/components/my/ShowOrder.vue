@@ -204,7 +204,7 @@
         },
         allOrders:function () {
           let userId = localStorage.getItem('userId')
-            this.axios.get('/serverName/orders/get_orders/'+userId).then(res =>{
+            this.axios.get('/orders/get_orders/'+userId).then(res =>{
               if (res.data.code != 0){
                 this.ordersNull = res.data.code
               } else {
@@ -217,7 +217,7 @@
         },
         stateOrders:function (state) {
           let userId = localStorage.getItem('userId')
-          this.axios.get('/serverName/orders/get_state?state='+state+'&userId='+userId).then(res => {
+          this.axios.get('/orders/get_state?state='+state+'&userId='+userId).then(res => {
             if (res.data.code != 0){
               this.ordersNull = res.data.code
             } else {
@@ -241,7 +241,7 @@
         },
         confirmGoods:function(orderId){
           console.log(orderId)
-          this.axios.put('/serverName/orders/confirm_goods/'+orderId).then(res =>{
+          this.axios.put('/orders/confirm_goods/'+orderId).then(res =>{
             if (res.data.code !== 0){
               alert("确认失败")
             }else {
